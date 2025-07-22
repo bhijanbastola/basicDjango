@@ -1,9 +1,29 @@
 {% extends "website/layout.html" %}
+{% load static %}
 
 {% block title %}
 App page
 {% endblock title %}
 
 {% block content %}
-<h1>Welcome to the App Page</h1>
+
+<h1>Welcome to the Product Page</h1>
+
+
+{% for product in products  %}
+
+<div class ="">
+    image: <img src="{{ product.image.url }}" alt="{{ product.name }} image" style="width: 100px; height: 100px;">
+    <h2>{{ product.name }}</h2>
+    {% comment %} <p>{{ product.description }}</p> {% endcomment %}
+    {% comment %} <p>Price: ${{ product.price }}</p> {% endcomment %}
+    <p>Category: {{ product.type }}</p>
+    <a href="{% url 'product_detail' product.id %}"></a>
+    <button type ="button" class="product-btn">
+        {{product.type}}-{{product.id}}
+    </button>
+
+</div>
+{% endfor %}
 {% endblock content %}
+
